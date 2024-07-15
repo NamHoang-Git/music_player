@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tak Music Player</title>
+    <link rel="icon" href="./assets/image/logo_app.png" type="image/x-icon" />
+    <!-- Css -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/grid.css">
+
+    <!-- Icon & Font -->
+    <script src="https://kit.fontawesome.com/d6f473b114.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <!-- ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div id="main">
+        <div class="grid">
+            <div class="row no-gutters">
+                <div class="col l-2">
+                    <nav class="nav">
+                        <div class="nav__header">
+                            <a href="#">
+                                <div class="nav__header-logo">
+                                    <img src="./assets/image/logo_app.png" alt="">
+                                </div>
+                                <h3 class="nav__header-title">Music Player</h3>
+                            </a>
+                        </div>
+
+                        <div class="nav__explore">
+                            <h4 class="nav__explore-header">Explore</h4>
+                            <ul class="nav__explore-list">
+                                <div class="nav__list-item active">
+                                    <a href="#">
+                                        <i class="fa-solid fa-house"></i> Homepage
+                                    </a>
+                                </div>
+                                <div class="nav__list-item">
+                                    <a href="#">
+                                        <i class="fa-solid fa-music"></i> Music Library
+                                    </a>
+                                </div>
+                                <div class="nav__list-item">
+                                    <a href="#">
+                                        <i class="fa-solid fa-headphones-simple"></i> Recent Music
+                                    </a>
+                                </div>
+                                <div class="nav__list-item">
+                                    <a href="#">
+                                        <i class="fa-solid fa-download"></i> Download
+                                    </a>
+                                </div>
+                                <div class="nav__list-item">
+                                    <a href="#">
+                                        <i class="fa-regular fa-bell"></i> Notifications
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
+
+                        <div class="nav__others">
+                            <h4 class="nav__others-header">Others</h4>
+                            <ul class="nav__others-list">
+                                <div class="nav__list-item">
+                                    <a href="#">
+                                        <i class="fa-solid fa-code-branch"></i> Explore
+                                    </a>
+                                </div>
+                                <div class="nav__list-item">
+                                    <a href="#">
+                                        <i class="fa-solid fa-share"></i> Share Music
+                                    </a>
+                                </div>
+                                <div class="nav__list-item">
+                                    <a href="#">
+                                        <i class="fa-regular fa-heart"></i> Favorite Music
+                                    </a>
+                                </div>
+                                <div class="nav__list-item">
+                                    <a href="#">
+                                        <i class="fa-regular fa-envelope"></i> Messages
+                                    </a>
+                                </div>
+                                <div class="nav__list-item">
+                                    <a href="#">
+                                        <i class="fa-solid fa-trash-can"></i> Trash Files
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="col l-10">
+                    <div class="bar">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <div class="search">
+                            <input type="text" placeholder="Search your songs...">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        
+                        <div class="account">
+                            <img src="./assets/image/tak.jpg" alt="">
+                            <div class="account__info">
+                                <h4>GrenTaka</h4>
+                                <p>Designer</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="content__slider">
+                            <h3 class="content__body-header">Recently Added</h3>
+                            <div class="row recently">
+                                <!--  -->
+                            </div>
+                        </div>
+
+                        <div class="content__slider slider__scroll">
+                            <h3 class="content__body-header">Latest Song Release</h3>
+                            <div class="latest">
+                                <!--  -->
+                            </div>
+                        </div>
+
+                        <div class="content__slider">
+                            <h3 class="content__body-header">Single Release</h3>
+                            <div class="row single">
+                                <!--  -->
+                            </div>
+                        </div>
+
+                        <div class="music__bar player">
+                            <div class="row no-gutters">
+                                <div class="col l-4-10">
+                                    <div class="music__bar-song">
+                                        <img src="" alt="" class="song__bar-img">
+                                        <div class="song__bar-info">
+                                            <h4 class="song__bar-name"></h4>
+                                            <p class="song__bar-singer"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col l-6-10">
+                                    <div class="music__bar-display">
+                                        <div class="display__line">
+                                            <p class="time__now">00:00</p>
+                                            <input id="time__line" class="time__line" type="range" value="0" step="1" min="0" max="100">
+                                            <p class="time__end">03:40</p>
+                                        </div>
+
+                                        <div class="display__control player">
+                                            <div class="btn repeat__btn">
+                                                <i class="fa-solid fa-repeat"></i>
+                                            </div>
+                                            <div class="btn prev__btn">
+                                                <i class="fa-solid fa-backward-step"></i>
+                                            </div>
+                                            <div class="toggle-play__btn">
+                                                <i class="fa-solid fa-circle-pause icon-pause"></i>
+                                                <i class="fa-solid fa-circle-play icon-play"></i>
+                                            </div>
+                                            <div class="btn next__btn">
+                                                <i class="fa-solid fa-forward-step"></i>
+                                            </div>
+                                            <div class="btn random__btn">
+                                                <i class="fa-solid fa-shuffle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <audio id="audio" src=""></audio>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Script -->
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
