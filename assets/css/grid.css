@@ -338,6 +338,12 @@
         max-width: 25%;
     }
 
+    .l-3-10 {
+        display: block;
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
     .l-4 {
         display: block;
         flex: 0 0 33.33333%;
@@ -374,10 +380,22 @@
         max-width: 58.33333%;
     }
 
+    .l-7-10 {
+        display: block;
+        flex: 0 0 70%;
+        max-width: 70%;
+    }
+
     .l-8 {
         display: block;
         flex: 0 0 66.66667%;
         max-width: 66.66667%;
+    }
+
+    .l-8-10 {
+        display: block;
+        flex: 0 0 80%;
+        max-width: 80%;
     }
 
     .l-9 {

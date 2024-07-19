@@ -14,13 +14,27 @@ const $$ = document.querySelectorAll.bind(document)
     const singerSongBar = $('.song__bar-singer') 
     const audio = $('#audio')
 
+    const volumeControl = $('.volume__control')
+    const volumeSlider = $('.volume__slider')
+    const volumeLine = $('.volume__line')
+    const progressVolume = $('.progress')
+    const maxVolume = $('.max-volume')
+    const lowVolume = $('.low-volume')
+    const veryLowVolume = $('.very-low-volume')
+    const muteVolume = $('.mute-volume')
+
+    const timeNow = $('.time__now')
+    const timeEnd = $('.time__end')
+
     const playBtn = $('.toggle-play__btn');
     const player = $('.display__control.player')
     const timeLine = $('#time__line')
+    const timeProgress = $('.time_progress')
     const nextBtn = $('.next__btn')
     const prevBtn = $('.prev__btn')
     const repeatBtn = $('.repeat__btn')
     const randomBtn = $('.random__btn')
+    const volumeBtn = $('.volume__btn')
 
     const musicBar = $('.music__bar.player')
 
@@ -149,7 +163,7 @@ const $$ = document.querySelectorAll.bind(document)
                 singer: 'Mr. Siro',
                 lyric: 'Thật vô nghĩa phải không em...',
                 day: 'Latest Release Aug 14, 2017',
-                minute: '03:40',
+                minute: '05:20',
                 path: './assets/song/NONSTOP 2024 MIXTAPE - NHẠC TRẺ REMIX 2024 HAY NHẤT HIỆN NAY - NONSTOP 2024 VINAHOUSE BASS CỰC MẠNH.mp3',
             },
             {
@@ -159,7 +173,7 @@ const $$ = document.querySelectorAll.bind(document)
                 singer: 'Pokémon Café Mix',
                 lyric: 'Thật vô nghĩa phải không em...',
                 day: 'Latest Release Aug 14, 2017',
-                minute: '03:40',
+                minute: '01:25:06',
                 path: './assets/song/Single/Title Theme (Short Ver.) - Pokémon Café Mix.mp3',
             },
         ],
@@ -264,19 +278,20 @@ const $$ = document.querySelectorAll.bind(document)
         loadRecentlyCurrentSong: function() {
             nameSongBar.textContent = this.currentSongRecently.name;
             singerSongBar.textContent = this.currentSongRecently.singer;
-            imgSongBar.src = `${this.currentSongRecently.image}`
+            imgSongBar.src = `${this.currentSongRecently.image}`;
             audio.src = this.currentSongRecently.path; 
         },
         loadLatestCurrentSong: function() {
             nameSongBar.textContent = this.currentSongLatest.name;
             singerSongBar.textContent = this.currentSongLatest.singer;
-            imgSongBar.src = `${this.currentSongLatest.image}`
+            imgSongBar.src = `${this.currentSongLatest.image}`;
             audio.src = this.currentSongLatest.path; 
+            timeEnd.textContent = this.currentSongLatest.minute;
         },
         loadSingleCurrentSong: function() {
             nameSongBar.textContent = this.currentSongSingle.name;
             singerSongBar.textContent = this.currentSongSingle.singer;
-            imgSongBar.src = `${this.currentSongSingle.image}`
+            imgSongBar.src = `${this.currentSongSingle.image}`;
             audio.src = this.currentSongSingle.path; 
         },
         scrollToActiveSong: function() {
@@ -298,6 +313,7 @@ const $$ = document.querySelectorAll.bind(document)
         },
         handleEvents: function() {
             const _this = this;
+            duration = 10000;
 
             // Xu ly khi Click Play
             playBtn.onclick = function() {
@@ -322,11 +338,18 @@ const $$ = document.querySelectorAll.bind(document)
 
             // Khi tien do bai hat thay doi
             audio.ontimeupdate = function() {;
+                // Current Time
+                var currentHours = Math.floor(audio.currentTime / 3600);
+                var currentMinutes = Math.floor(audio.currentTime / 60 % 60);
+                var currentSeconds = Math.floor(audio.currentTime % 60);
+
+                timeNow.textContent = `${currentHours ? currentHours + ':' : ''}${currentMinutes >= 10 ? currentMinutes : '0' + currentMinutes}:${currentSeconds >= 10 ? currentSeconds : '0' + currentSeconds}`;
+
+                // Time Line
                 if (audio.duration) {
                     const timeLinePercent = Math.floor(audio.currentTime / audio.duration * 100);
+                    timeProgress.value = timeLine.value;
                     timeLine.value = timeLinePercent;
-                    timeLine.style.background = 'linear-gradient(to right, #6683e5 0%, #0c373c '+ timeLinePercent +'%, #c2bebe '+ timeLinePercent +'%, #ffffff 100%)';
-                    output.innerHTML = timeLine.timeLinePercent;
                 };
             };
 
@@ -379,8 +402,73 @@ const $$ = document.querySelectorAll.bind(document)
                 };
             };
 
+            // Xu ly Volume
+            volumeLine.oninput = function() {
+                progressVolume.value = volumeLine.value;
+                audio.volume = volumeLine.value / 100
+                if (volumeLine.value <= 0) {
+                    maxVolume.style.display = 'none';
+                    lowVolume.style.display = 'none';
+                    veryLowVolume.style.display = 'none';
+                    muteVolume.style.display = 'inline-block';
+                } else if (volumeLine.value <= 25) {
+                    audio.muted = false;
+                    maxVolume.style.display = 'none';
+                    lowVolume.style.display = 'none';
+                    veryLowVolume.style.display = 'inline-block';
+                    muteVolume.style.display = 'none';
+                } else if (volumeLine.value <= 60) {
+                    audio.muted = false;
+                    maxVolume.style.display = 'none';
+                    lowVolume.style.display = 'inline-block';
+                    veryLowVolume.style.display = 'none';
+                    muteVolume.style.display = 'none';
+                } else {
+                    audio.muted = false;
+                    maxVolume.style.display = 'inline-block';
+                    lowVolume.style.display = 'none';
+                    veryLowVolume.style.display = 'none';
+                    muteVolume.style.display = 'none';
+                }
+            };
+
+                // Value
+            setInterval(function() {
+                progressVolume.value = volumeLine.value;
+            });
+            
+                // Xu ly icon / volume
+            volumeBtn.onclick = function() {
+                audio.muted = !audio.muted;
+                if (audio.muted) {
+                    maxVolume.style.display = 'none';
+                    lowVolume.style.display = 'none';
+                    veryLowVolume.style.display = 'none';
+                    muteVolume.style.display = 'inline-block';
+                    volumeLine.value = '0';
+                } else {
+                    volumeLine.value = audio.volume * 100;
+                    if (audio.volume > 0 && audio.volume <= 0.25) {
+                        maxVolume.style.display = 'none';
+                        lowVolume.style.display = 'none';
+                        veryLowVolume.style.display = 'inline-block';
+                        muteVolume.style.display = 'none';
+                    } else if (audio.volume > 0.25 && audio.volume <= 0.6) {
+                        maxVolume.style.display = 'none';
+                        lowVolume.style.display = 'inline-block';
+                        veryLowVolume.style.display = 'none';
+                        muteVolume.style.display = 'none';
+                    } else if (audio.volume > 0.6 && audio.volume <= 1) {
+                        maxVolume.style.display = 'inline-block';
+                        lowVolume.style.display = 'none';
+                        veryLowVolume.style.display = 'none';
+                        muteVolume.style.display = 'none';
+                    }; 
+                };
+            };
+
             // Lang nghe hanh vi click vao playlist
-            // Recently Song
+                // Recently Song
             recentlySong.onclick = function(e) {
                 const recentlyNotPlaying = e.target.closest('.recently__song:not(.playing)');
                 const recentlyPlaying = e.target.closest('.recently__song.playing');
@@ -408,7 +496,7 @@ const $$ = document.querySelectorAll.bind(document)
                     musicBar.classList.add('playing');
                 };
             };
-            // Latest Song
+                // Latest Song
             latest.onclick = function(e) {
                 const latestNotActive = e.target.closest('.latest__song:not(.active)');
                 const latestActive = e.target.closest('.latest__song.active');
@@ -431,7 +519,7 @@ const $$ = document.querySelectorAll.bind(document)
                 };
 
                 }
-            // Single Song
+                // Single Song
             singleSong.onclick = function(e) {
                 const singleNotPlaying = e.target.closest('.single__song:not(.playing)');
                 const singlePlaying = e.target.closest('.single__song.playing');
@@ -457,7 +545,7 @@ const $$ = document.querySelectorAll.bind(document)
 
         start: function() {
             this.navListClick();
-            
+
             this.renderRecently();
             this.renderLatest();
             this.renderSingle();

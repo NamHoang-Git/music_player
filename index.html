@@ -108,7 +108,7 @@
                         <div class="account">
                             <img src="./assets/image/tak.jpg" alt="">
                             <div class="account__info">
-                                <h4>GrenTaka</h4>
+                                <h4>Nam Hoang</h4>
                                 <p>Designer</p>
                             </div>
                         </div>
@@ -138,7 +138,7 @@
 
                         <div class="music__bar player">
                             <div class="row no-gutters">
-                                <div class="col l-4-10">
+                                <div class="col l-2-10">
                                     <div class="music__bar-song">
                                         <img src="" alt="" class="song__bar-img">
                                         <div class="song__bar-info">
@@ -148,15 +148,30 @@
                                     </div>
                                 </div>
 
-                                <div class="col l-6-10">
+                                <div class="col l-8-10">
                                     <div class="music__bar-display">
                                         <div class="display__line">
-                                            <p class="time__now">00:00</p>
-                                            <input id="time__line" class="time__line" type="range" value="0" step="1" min="0" max="100">
-                                            <p class="time__end">03:40</p>
+                                            <p class="time__now"></p>
+                                            <div class="time__slider">
+                                                <input id="time__line" class="time__line" type="range" value="0" step="1">
+                                                <progress class="time_progress" min="0" max="100" value="0"></progress>
+                                            </div>
+                                            <p class="time__end"></p>
                                         </div>
 
                                         <div class="display__control player">
+                                            <div class="volume__control">
+                                                <div class="volume__btn">
+                                                    <i class="fa-solid fa-volume-high max-volume"></i>
+                                                    <i class="fa-solid fa-volume-low low-volume"></i>
+                                                    <i class="fa-solid fa-volume-off very-low-volume"></i>
+                                                    <i class="fa-solid fa-volume-xmark mute-volume"></i>
+                                                </div>
+                                                <div class="volume__slider">
+                                                    <input id="volume__line" class="volume__line" type="range" value="100" step="2">
+                                                    <progress class="progress" min="0" max="100" value="100"></progress>
+                                                </div>
+                                            </div>
                                             <div class="btn repeat__btn">
                                                 <i class="fa-solid fa-repeat"></i>
                                             </div>
