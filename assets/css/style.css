@@ -6,10 +6,37 @@
     height: 100%;
     background-color: var(--bg-color);
     border-left: 32px solid var(--bg-color);
-    transition: .5s;
     overflow: hidden;
+    transition: .5s;
     z-index: 1;
 }
+
+/* Nav Active */
+.nav.active {
+    width: 8%;
+    transition: .5s;
+}
+
+.nav.active .nav__header > a > h3,
+.nav.active .nav__explore .nav__explore-list .nav__list-item > a > p,
+.nav.active .nav__others .nav__others-list .nav__list-item > a > p {
+    display: none;
+}
+
+.nav.active .nav__header > a > div > img {
+    margin-top: 10px;
+}
+
+.nav.active .nav__explore .nav__explore-list .nav__list-item > a,
+.nav.active .nav__others .nav__others-list .nav__list-item > a {
+    padding: 10px 0 10px 10px;
+}
+
+.nav.active .nav__explore .nav__explore-list .nav__list-item > a > i,
+.nav.active .nav__others .nav__others-list .nav__list-item > a > i {
+    font-size: 1.6rem;
+}
+/* End */
 
 .nav__header {
     margin-left: -32px;
@@ -51,14 +78,16 @@
 .nav__list-item {
     display: flex;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     position: relative;
 }
 
 .nav__list-item > a {
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: var(--black1);
-    padding: 12px 10px;
+    padding: 10px;
     width: 100%;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -82,7 +111,7 @@
 
 .nav__list-item > a > i {
     margin-right: 12px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .nav__list-item.active > a > i {
@@ -115,6 +144,12 @@
     pointer-events: none;
 }
 
+.nav__list-item > a > p {
+    padding: 0;
+    margin: 0;
+    line-height: 1.1rem;
+}
+
 .nav__others {
     margin-top: 28px;
 }
@@ -125,11 +160,22 @@
     align-items: center;
     justify-content: space-between;
     background-color: var(--white);
+    padding: 25px 42px 22px;
     position: fixed;
     left: 16.7%;
     right: 0px;
-    padding: 25px 42px 22px;
+    transition: border-bottom 0.2s ease;
+    transition: .5s;
     z-index: 1;
+}
+
+.bar.active {
+    left: 8%;
+    transition: .5s;
+}
+
+.bar__border {
+    border-bottom: 1px solid var(--blue);
 }
 
 .bar > i {
@@ -214,6 +260,12 @@
 /* Container */
 .container {
     margin: 118px 42px 70px;
+    transition: .5s;
+}
+
+.container.active {
+    margin: 105px 58px 70px -60px;
+    transition: .5s;
 }
 
 .single {
@@ -307,6 +359,7 @@
     justify-content: space-between;
     font-size: 1.1rem;
     padding: 10px 0;
+    margin-right: 4px;
     cursor: pointer;
 }
 
@@ -382,13 +435,20 @@
 /* Music Bar */
 .music__bar {
     background-image: linear-gradient(45deg, #ffeee8, #02acac);
-    padding: 12px 12px 10px;
+    padding: 10px 14px 8px;
     box-shadow: 0 -0.1px 4px rgba(0, 0, 0, 0.4);
     position: fixed;
     bottom: 0;
     right: 0px;
     left: 16.7%;
     z-index: 1;
+    transition: .5s;
+}
+
+.music__bar.active {
+    left: 8%;
+    padding: 6px 14px 4px;
+    transition: .5s;
 }
 
 .music__bar.player {
@@ -403,7 +463,7 @@
     width: 32px;
     border-radius: 5px;
     box-shadow: 0 0 12px rgba(226, 90, 90, 0.9);
-    margin-right: 12px;
+    margin: 2px 12px 0 0;
 }
 
 .music__bar-song {
@@ -547,11 +607,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 15px;
+    background: var(--bg-color);
+    border-radius: 6px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
+    margin: 0 5px 0 -10px;
+    padding: 6px 8px;
 }
 
 .volume__btn {
-    width: 25px;
+    width: 22px;
 }
 
 .volume__btn > i {
@@ -622,7 +686,7 @@
 }
 
 .volume__slider .progress::-webkit-progress-bar {
-    background: var(--bg-color);
+    background: var(--gray);
     border-radius: 10px;
 }
 

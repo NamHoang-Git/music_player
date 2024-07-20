@@ -9,6 +9,11 @@ const $$ = document.querySelectorAll.bind(document)
 
     const navLists = $$('.nav__list-item')
 
+    const menu = $('.bar i')
+    const nav = $('.nav')
+    const bar = $('.bar')
+    const container = $('.container')
+
     const imgSongBar = $('.song__bar-img') 
     const nameSongBar = $('.song__bar-name') 
     const singerSongBar = $('.song__bar-singer') 
@@ -302,6 +307,15 @@ const $$ = document.querySelectorAll.bind(document)
                 });
             }, 200);
         },
+        scrollBorderBar: function() {
+            window.onscroll = function(e) {
+                if (window.scrollY > 0) {
+                    bar.classList.add('bar__border');
+                } else {
+                    bar.classList.remove('bar__border');
+                };
+            };
+        },
         navListClick: function() {
             // NavList 
             navLists.forEach((item) => {
@@ -310,6 +324,14 @@ const $$ = document.querySelectorAll.bind(document)
                     this.classList.add('active');
                 };
             });
+        },
+        activeToMenu: function() {
+            menu.onclick = function() {
+                nav.classList.toggle('active')
+                bar.classList.toggle('active')
+                container.classList.toggle('active')
+                musicBar.classList.toggle('active')
+            }
         },
         handleEvents: function() {
             const _this = this;
@@ -545,6 +567,8 @@ const $$ = document.querySelectorAll.bind(document)
 
         start: function() {
             this.navListClick();
+            this.scrollBorderBar();
+            this.activeToMenu();
 
             this.renderRecently();
             this.renderLatest();
