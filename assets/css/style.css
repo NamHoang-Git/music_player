@@ -400,32 +400,25 @@
 .latest__song-info {
     display: flex;
     align-items: center;
+    font-size: 1.2rem;
     width: 40%;
 }
 
 .song__number {
     margin: 0;
     padding-left: 18px;
-    font-size: 1rem;
 }
 
 .latest__img {
     width: 35px;
+    height: 35px;
     border-radius: 5px;
     box-shadow: 0 0 12px rgba(226, 90, 90, 0.9);
     margin: 0 16px 0 20px;
 }
 
-.song__text,
-.song__day {
-    color: var(--black1);
-}
-
-.latest__song_time {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 45%;
+.song__text {
+    color: var(--red);
 }
 
 .song__minute {
@@ -461,6 +454,7 @@
 
 .song__bar-img {
     width: 32px;
+    height: 32px;
     border-radius: 5px;
     box-shadow: 0 0 12px rgba(226, 90, 90, 0.9);
     margin: 2px 12px 0 0;
